@@ -1,4 +1,4 @@
-package step1;
+package basic;
 
 import java.util.Scanner;
 
@@ -28,7 +28,7 @@ public class GradeCalcul {
 	    String str2 = "음수입니다.";
 	    String str3= "0 입니다."; 
 	    
-	    System.out.println(score2==0? (score2>0? str1: str3) : str2);
+	    System.out.println(score2>=0? (score2==0? str3 : str1) : str2);
 	    
 	   /* if(score2< 0)
 	    	System.out.println("입력하신 숫자 " + score2+"는 음수입니다. ");

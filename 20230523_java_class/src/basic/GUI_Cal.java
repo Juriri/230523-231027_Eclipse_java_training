@@ -1,4 +1,4 @@
-package step1;
+package basic;
 import java.awt.Dimension;
 import javax.swing.*;
 

@@ -1,8 +1,8 @@
-package step1;
+package basic;
 
 import java.util.Scanner;
 
-public class Test5 {
+public class Compared_num {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub

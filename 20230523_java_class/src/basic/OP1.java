@@ -1,5 +1,4 @@
-package step1;
-
+package basic;
 public class OP1 {
 
 	public static void main(String[] args) {

@@ -1,11 +1,11 @@
-package step1;
+package basic;
 import java.util.*;
 
 public class IfThen {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		/*int a=10,b=20;
+		int a=10,b=20;
 		boolean flag = true;
 		
 		//A가 10이면 참
@@ -22,7 +22,8 @@ public class IfThen {
 			System.out.println("a가 b와 같나 " + flag);
 		}
 		
-		System.out.println("if문과 상관없이 실행");*/
+		System.out.println("if문과 상관없이 실행");
 		
 
+	}
 }
