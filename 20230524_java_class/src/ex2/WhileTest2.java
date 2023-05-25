@@ -11,14 +11,14 @@ public class WhileTest2 {
 		int input_num=0;
 		Scanner sc = new Scanner(System.in);
 		
-		/* 배열로 입력받으려면 주석해제
+		//배열로 입력받으려면 주석해제
 		ArrayList<String> IDs = new ArrayList<>();
 		ArrayList<String> Names = new ArrayList<>();
 		ArrayList<String> Address = new ArrayList<>();
-		*/
+		
 		
 		String id="",name="",addr="";
-		//String str = "";
+		String str = "";
 		
 		while(flag) {
 			System.out.println("1.등록\n2.전체출력\n3.종료");
@@ -29,22 +29,22 @@ public class WhileTest2 {
 				case 1:
 				//아이디
 				System.out.println("아이디를 입력하세요: ");
-				id = sc.next();
-				//IDs.add(str);
+				str = sc.next();
+				IDs.add(str);
 				
 				//이름
 				System.out.println("이름 입력하세요: ");
-				name = sc.next();
-				//Names.add(str);
-				
+				str = sc.next();
+				Names.add(str);
+			
 				//주소
 				System.out.println("주소를 입력하세요: ");
-				addr = sc.next();
-				//Address.add(str);
+				str = sc.next();
+				Address.add(str);
 				break;
 				
 			case 2:
-				System.out.println("[등록결과]\n"+"아이디: "+id+" 이름: "+name+" 주소: "+addr);
+				System.out.println("[등록결과]\n"+"아이디: "+IDs+" 이름: "+Names+" 주소: "+Address);
 				break;
 				
 			case 3:
