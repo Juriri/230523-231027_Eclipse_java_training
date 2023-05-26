@@ -12,6 +12,7 @@ public class Cal_Date {
 	ArrayList<Integer> month_long = new ArrayList<>(Arrays.asList(1,3,5,7,8,10,12));
 	ArrayList<Integer> month_medium = new ArrayList<>(Arrays.asList(4,6,9,11));
 	ArrayList<Integer> month_short = new ArrayList<>(Arrays.asList(2));
+	ArrayList<Integer> date_cal = new ArrayList<>(Arrays.asList(31,28,31,30,31,30,31,31,30,31,30,31));
 	
 	public static void getStartDate() {
 		Get_date start_d = new Get_date();
@@ -35,7 +36,7 @@ public class Cal_Date {
 	
 	public String calDate() {		
 		int year_result=0, month_result=0, date_result=0;
-		//int total_date=0;
+		int total_date=0;
 		
 		System.out.println("\n입력한 시작날짜 출력: "+start_year+"년 "+start_month+"월 "+start_date+"일 ");
 		System.out.println("입력한 종료날짜 출력: "+end_year+"년 "+end_month+"월 "+end_date+"일\n");
@@ -69,16 +70,19 @@ public class Cal_Date {
 			year_result -=1;
 		}
 		
-		/*date 계산 미완
-		if(month_long.contains(month_result)) {
-			total_date = (year_result * 365) + (month_result * 31) + (date_result);
-		} else if(month_medium.contains(month_result)) {
-			total_date = (year_result * 365) + (month_result * 30) + (date_result);
-		} else {
-			total_date = (year_result * 365) + (month_result * 28) + (date_result);
-		}*/
+		//date 계산 
 		
-		return "두 날짜의 차이 계산 결과: "+year_result+"년 "+month_result+"개월 "+ date_result+"일 입니다. ";
+		//년 365일 + 일 + 오늘 1
+		total_date = (year_result * 365) + date_result + 1;
+		
+		//달 계산 (31, 30, 28 구분)
+		for(int i=0; i<month_result; i++) {
+			total_date += date_cal.get(i);
+			System.out.println(date_cal.get(i));
+		}
+		
+		
+		return "두 날짜의 차이 계산 결과: "+year_result+"년 "+month_result+"개월 "+ date_result+"일 입니다. "+ "("+total_date + "일)";
 		
 	}
 
