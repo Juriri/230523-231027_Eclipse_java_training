@@ -1,8 +1,8 @@
-package step3;
+package step4;
 
 import java.util.Scanner;
 
-public class grade {
+public class gradeInput {
 	String name;
 	int kor,eng,math;
 	int total;
@@ -29,7 +29,7 @@ public class grade {
 	}
 	
 	void print() {
-		System.out.println("국어 / 영어 / 수학 / 총점은 "+kor+", "+math+", "+math+", "+total);
+		System.out.println("국어: "+kor+ " 영어: "+eng+" 수학: "+math+" 총점은 "+total);
 		System.out.println(name+"의 평균 점수는 "+avg+"입니다. ");
 	}
 
