@@ -1,5 +1,10 @@
 package exception;
 
-public class DuplicateTelException {
+public class DuplicateTelException extends Exception {
+	
+		public  DuplicateTelException (String message) {
+			super(message);
+		}
+	
 
 }

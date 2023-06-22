@@ -7,8 +7,8 @@ public class TestThrow3 {
 		
 		
 		try {
-			MyDate date = new MyDate("32");
-			System.out.println(date.getDay());
+			MyDate date = new MyDate("31");
+			//System.out.println(date.getDay(null));
 			
 		}catch(DateException e) {
 			System.out.println(e.getMessage());

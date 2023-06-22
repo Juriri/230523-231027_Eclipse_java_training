@@ -1,15 +1,14 @@
 package test;
 
 import java.util.Scanner;
-
 import service.Schoolservice;
-import vo.Employee;
-import vo.Person;
-import vo.Student;
-import vo.Teacher;
+import vo.*;
+import exception.*;
+
 
 public class TestSchoolService {
-	public static void main(String[] args) {
+	InputException input;
+	public static void main(String[] args) throws DuplicateTelException, PersonNotFoundException {
 		Scanner sc = new Scanner(System.in);
 		
 		Schoolservice service = new Schoolservice();
@@ -23,9 +22,10 @@ public class TestSchoolService {
 		
 		
 		while(flag) {
-			System.out.println("1. 등록  2. 검색  3.수정  4.삭제  5. 전체출력  6.종료");
-			int menu = sc.nextInt();
-			
+		System.out.println("1. 등록  2. 검색  3.수정  4.삭제  5. 전체출력  6.종료");
+		int menu = sc.nextInt();
+		
+		try {
 			switch(menu) {
 			//1. 등록
 				case 1:
@@ -35,27 +35,26 @@ public class TestSchoolService {
 					tel = sc.next();
 					System.out.println("주소 입력: ");
 					address = sc.next();
-					
+						
 					System.out.println("1. 교직원   2. 학생   3. 선생님");
 					int num = sc.nextInt();
-					
+
 					if(num==1) {
 						System.out.println("dept 입력: ");
 						dept = sc.nextInt();
 						p = new Employee(name, tel, address, dept);						
-					}else {
+					} else {
 						if(num==2) {
 							System.out.println("stuId 입력: ");
 							stuId = sc.next();
 							p = new Student(name, tel, address, stuId);
-							
+						
 						} else {
 							System.out.println("subject 입력: ");
 							subject = sc.next();
 							p = new Teacher(name, tel, address, subject);
 						}
 					}
-					
 					service.addMember(p);
 					break;
 					
@@ -63,7 +62,8 @@ public class TestSchoolService {
 				case 2:
 					System.out.println("검색할 전화번호 입력: ");
 					search_tel = sc.next();
-					service.findMemberVO(search_tel);
+					System.out.println(service.findMemberVO(search_tel));
+					System.out.println("=======검색 완료=========: ");
 					break;
 					
 				//3. 수정	
@@ -77,18 +77,27 @@ public class TestSchoolService {
 				case 4:
 					System.out.println("삭제할 전화번호 입력: ");
 					search_tel = sc.next();
-					service.deleteMember(search_tel);
+					service.deleteMember(search_tel);	
 					break;
-					
-					
+				//5. 전체 출력
 				case 5:
-					System.out.println(service.getMap());
+					service.printAll();
 					break;
-					
 					
 				case 6: 
 					flag = false;
 					break;
+				default:
+					System.out.println("입력값 오류입니다.  ");
+				}
+			}
+//			catch(InputException input) {
+//				System.out.println(input.getMessage());
+//			}
+			catch(DuplicateTelException du) {
+				System.out.println(du.getMessage());
+			}catch(PersonNotFoundException e) {
+				System.out.println(e.getMessage());
 			}
 		}
 	}
