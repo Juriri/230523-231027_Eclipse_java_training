@@ -80,7 +80,6 @@ public class DB {
 			String select_sql = "select book_name,book_writer,book_price from book";
 			pstmt = conn.prepareStatement(select_sql);
 			
-			pstmt = conn.prepareStatement(select_sql);
 			rs=pstmt.executeQuery(select_sql);
 		
 			//select sql 출력
