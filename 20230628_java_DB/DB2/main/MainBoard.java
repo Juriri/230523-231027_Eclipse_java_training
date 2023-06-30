@@ -8,7 +8,6 @@ public class MainBoard {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		// TODO Auto-generated method stub
 				BoardService service = new BoardService();
 				Scanner sc = new Scanner(System.in);
 				boolean flag = true;

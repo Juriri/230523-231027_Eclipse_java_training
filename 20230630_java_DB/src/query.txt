@@ -1,0 +1,36 @@
+drop table member2; 
+drop table board;
+drop table product; 
+
+drop sequence seq_board;
+drop sequence seq_product;
+
+
+create table member2(
+id varchar2(20) primary key,
+pwd varchar2(20) not null,
+name varchar2(20),
+email varchar2(40)
+);
+
+create table board(
+num number primary key,
+writer varchar2(20) not null,
+pwd varchar2(20),
+title varchar2(20),
+board_date date,
+content varchar2(50)
+);
+
+
+create sequence seq_board;
+
+create table product(
+num number primary key,
+name varchar2(20) not null,
+price number not null,
+quantity number not null,
+id varchar2(20) not null
+);
+
+create sequence seq_product;
