@@ -99,7 +99,6 @@ public class memberDao {
 		
 		String id=null, name=null, address=null, password=null;
 		
-//		String sql = "select name, address, password from member where id = ?";
 		String sql = "SELECT id, name, address, password FROM member WHERE id LIKE '%' || ? || '%'";
 
 
