@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<form action="/20230713_servlet/RegisterServlet" method="get" name="Registerform">
+아  이  디: <input type="text" name="userId">
+<input type="button" name="checkName" value="중복확인" onclick="checkDuplicateName();"><br><br>
+패 스 워 드: <input type="password" name="userPassword">
+이    름:  <input type="text" name="userName">
+주    소:  <input type="text" name="userAddress">
+<input type="submit" value="회원가입" onclick="return checkRegister()">
+</form>
+
+
+<script>
+function checkDuplicateName() {
+    var userId = document.Registerform.userId.value;
+    
+    // AJAX 요청
+    var xhr = new XMLHttpRequest();
+    xhr.open("post", "/20230713_servlet/RegisterServlet?userId=" + encodeURIComponent(userId), true);
+    
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState === XMLHttpRequest.DONE) {
+            if (xhr.status === 200) {
+                var response = xhr.responseText;
+                alert(response); // 결과 메시지를 알림으로 표시하거나 원하는 방식으로 처리합니다.
+            } else {
+                alert("오류 발생: " + xhr.status);
+            }
+        }
+    };
+    
+    xhr.send();
+}
+
+function checkRegister() {
+    var r = document.Registerform;
+    if (r.userId.value === "" || r.userPassword.value === "" || r.userName.value === "" || r.userAddress.value === "") {
+        alert("빈칸을 모두 입력하세요.");
+        return false;
+    }
+}
+</script>
+
+</body>
+</html>

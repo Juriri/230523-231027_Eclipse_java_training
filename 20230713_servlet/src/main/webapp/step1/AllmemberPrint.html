@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+table th, table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+table th {
+  background-color: #f2f2f2;
+  text-align: left;
+}
+
+table tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+</style>
+</head>
+<body>
+<table>
+  <thead>
+    <tr>
+      <th>아이디</th>
+      <th>이름</th>
+      <th>주소</th>
+      <th>비밀번호</th>
+    </tr>
+  </thead>
+  <tbody id="memberTableBody">
+    <!-- 회원 목록을 동적으로 추가할 자리 -->
+  </tbody>
+</table>
+
+<script>
+// 서버에서 회원 목록을 받아와서 테이블에 추가하는 함수
+function getMemberList() {
+  var xhr = new XMLHttpRequest();
+  xhr.open("GET", "/20230713_servlet/AllmemberServlet", true);
+
+  xhr.onreadystatechange = function() {
+    if (xhr.readyState === XMLHttpRequest.DONE) {
+      if (xhr.status === 200) {
+        var memberList = JSON.parse(xhr.responseText);
+        renderMemberList(memberList);
+      } else {
+        console.error("오류 발생: " + xhr.status);
+      }
+    }
+  };
+
+  xhr.send();
+}
+
+// 회원 목록을 테이블에 추가하는 함수
+function renderMemberList(memberList) {
+  var tableBody = document.getElementById("memberTableBody");
+
+  // 회원 목록 초기화
+  tableBody.innerHTML = "";
+
+  // 회원 목록을 반복하여 테이블에 추가
+  for (var i = 0; i < memberList.length; i++) {
+    var member = memberList[i];
+
+    var row = document.createElement("tr");
+    var idCell = document.createElement("td");
+    var nameCell = document.createElement("td");
+    var addressCell = document.createElement("td");
+    var passwordCell = document.createElement("td");
+
+    idCell.textContent = member.id;
+    nameCell.textContent = member.name;
+    addressCell.textContent = member.address;
+    passwordCell.textContent = member.password;
+
+    row.appendChild(idCell);
+    row.appendChild(nameCell);
+    row.appendChild(addressCell);
+    row.appendChild(passwordCell);
+
+    tableBody.appendChild(row);
+  }
+}
+
+// 페이지 로드 시 회원 목록을 서버에서 가져와서 생성
+getMemberList();
+</script>
+
+</body>
+</html>

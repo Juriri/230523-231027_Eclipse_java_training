@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f5f5f5;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.navbar {
+  background-color: #333;
+  padding: 10px;
+}
+
+.navbar a {
+  color: #fff;
+  text-decoration: none;
+  margin-right: 10px;
+}
+
+.navbar a:hover {
+  text-decoration: underline;
+}
+
+.title {
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="navbar">
+    <a href="register.html">회원 가입</a>
+    <a href="login.html">로그인</a>
+    <a href="#" onclick="logout()">로그아웃</a>
+    <a href="AllmemberPrint.html">모든 멤버 출력</a>
+    <a href="find.html">멤버 검색</a>
+  </div>
+</div>
+<script>
+function logout() {
+    // AJAX 요청
+    var xhr = new XMLHttpRequest();
+    xhr.open("GET", "/20230713_servlet/LogoutServlet", true);
+    
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState === XMLHttpRequest.DONE) {
+            if (xhr.status === 200) {
+                var response = xhr.responseText;
+                alert(response);
+                /* location.reload(); // 페이지 새로고침 */
+            } else {
+                alert("오류 발생: " + xhr.status);
+            }
+        }
+    };
+    
+    xhr.send();
+}
+</script>
+</body>
+</html>

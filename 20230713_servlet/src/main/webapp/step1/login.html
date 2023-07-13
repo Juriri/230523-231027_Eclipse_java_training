@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<form action="/20230713_servlet/LoginServlet" method="get" name="Loginform">
+아  이  디: <input type="text" name="userId">
+패 스 워 드: <input type="password" name="userPassword">
+<input type="submit" value="로그인" onclick="return checkLogin()">
+</form>
+<script>
+function checkLogin() {
+    var r = document.Loginform;
+    if (r.userId.value === "" || r.userPassword.value === "") {
+        alert("빈칸을 모두 입력하세요.");
+        return false;
+    }
+}
+</script>
+</body>
+</html>

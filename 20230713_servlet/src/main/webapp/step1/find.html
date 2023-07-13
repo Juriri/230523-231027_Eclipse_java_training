@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+table th, table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+table th {
+  background-color: #f2f2f2;
+  text-align: left;
+}
+
+table tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+</style>
+</head>
+<body>
+<form action="/20230713_servlet/memberSearchServlet" method="get" name="Searchform">
+검색할 멤버 id를 입력하세요: <input type="text" name="id">
+<input type="submit" value="전송">
+</form>
+<table>
+  <thead>
+    <tr>
+      <th>아이디</th>
+      <th>이름</th>
+      <th>주소</th>
+      <th>비밀번호</th>
+    </tr>
+  </thead>
+  <tbody id="memberTableBody">
+    <!-- 회원 목록을 동적으로 추가할 자리 -->
+  </tbody>
+</table>
+<script>
+  document.querySelector('form[name="Searchform"]').addEventListener('submit', function(e) {
+    e.preventDefault(); // Prevent form submission
+
+    var id = document.querySelector('input[name="id"]').value;
+    var xhr = new XMLHttpRequest();
+    xhr.open('GET', '/20230713_servlet/memberSearchServlet?id=' + encodeURIComponent(id));
+    xhr.onreadystatechange = function() {
+      if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
+        var memberList = JSON.parse(xhr.responseText);
+        var table = document.querySelector('table');
+        var tableBody = document.getElementById('memberTableBody');
+       
+        tableBody.innerHTML = ''; // Clear existing table rows
+        
+        if (memberList === null || memberList.length === 0) {
+            tableBody.innerHTML = ''; // Clear existing table rows
+            var noResultRow = document.createElement('tr');
+            noResultRow.innerHTML = '<td colspan="4">결과값 없음</td>'; // Show "결과값 없음" message
+            tableBody.appendChild(noResultRow);
+        } else {
+        	table.style.display = 'table'; // Show the table if there are results
+            tableBody.innerHTML = ''; // Clear existing table rows
+        	
+            memberList.forEach(function(member) {
+                var row = document.createElement('tr');
+                row.innerHTML = '<td>' + member.id + '</td>' +
+                                '<td>' + member.name + '</td>' +
+                                '<td>' + member.address + '</td>' +
+                                '<td>' + member.password + '</td>';
+                tableBody.appendChild(row);
+            });
+        }
+      }
+    };
+    xhr.send();
+  });
+</script>
+</body>
+</html>
