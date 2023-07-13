@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<!-- id는 java, pw는 abcd
+로그인 성공시에는 세션을 생성해서 세션 객체에 name: userName value: 이진우 라고 setting
+화면에는 java님 로그인 ok!
+step4.ShopServlet(쇼핑몰 입장하기) 으로 링크를 건다.
+링크를 누르면 이진우님 입장환영 이라는 메세지를 보여준다. 
+
+로그인 실패시에는 로그인 실패 다시 로그인하세요! 메세지 출력하고 login.html 로 링크건다. -->
+<form action="LoginServlet" method="post" name="Loginform" onsubmit="return idCheck()">
+아이디: <input type="text" name="id"> <br>
+패스워드: <input type="text" name="password"> <br>
+<input type="submit" value="로그인">
+</form>
+<script type="text/javascript">
+function idCheck() {
+	var idText = document.Loginform.id;
+	
+	if(idText.value == "") {
+		alert("아이디를 기재해주세요: ");
+		idText.value="";
+		idText.focus();
+		return false;
+	} 
+	
+	var pwText = document.Loginform.password;
+	
+	if(pwText.value=="") {
+		alert("비밀번호를 기재해주세요: ");
+		pwText.value="";
+		pwText.focus();
+		return false;
+	} 
+}
+</script>
+</body>
+</html>
