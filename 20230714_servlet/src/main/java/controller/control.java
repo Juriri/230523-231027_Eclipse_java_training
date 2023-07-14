@@ -37,7 +37,7 @@ public class control extends HttpServlet {
 		if( type != null && type.equals("list")) {
             // 전달받은 파라미터를 처리하는 로직 작성
             List<BookVo> bookList = ser.BookSelectAll();
-            System.out.println("bookList: "+bookList);
+            
             // bookList를 request 속성에 저장
             request.setAttribute("bookList", bookList);
             
@@ -62,6 +62,19 @@ public class control extends HttpServlet {
 	            
 	            // 전달받은 파라미터를 처리하는 로직 작성
 	            ser.BookInsert(new BookVo(0, author, title, publisher, content));
+
+	        } else if (type != null && type.equals("search")) {
+	            String search_title = request.getParameter("title");
+	            
+	            
+	            BookVo book = ser.BookSelect(search_title);
+	            
+	         // 검색 결과를 request 속성에 저장
+	            request.setAttribute("book", book);
+	            
+	            // search.jsp로 포워딩
+	            RequestDispatcher dispatcher = request.getRequestDispatcher("/find.jsp");
+	            dispatcher.forward(request, response);
 
 	        }
 	}

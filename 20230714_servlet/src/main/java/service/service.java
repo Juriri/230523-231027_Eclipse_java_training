@@ -53,7 +53,7 @@ public class service {
 		BookVo vo= null;
 		String author=null, title=null, publisher=null, content=null;
 		
-		String sql = "select * from book where title = ?";
+		String sql = "select * from book where title like '%' || ? || '%'";
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, search_title);
