@@ -10,4 +10,5 @@ public interface Dao {
 	Member getMember(int num);
 	void update(Member m);
 	void delete(int num);
+	Member signin(String search_id, String search_pwd);
 }

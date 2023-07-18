@@ -10,5 +10,5 @@ public interface Service {
 	ArrayList<Member> list();
 	void delete(int num);
 	Member getMember(int num);
-	Member win();
+	Member getMemberbySignin(String search_id, String search_pwd);
 }

@@ -6,41 +6,50 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
-    <title>Insert title here</title>
+    <title>회원 리스트 출력합니다. </title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
+<style>
+
+</style>
 <body>
-    <% ArrayList<Member> list = (ArrayList<Member>) request.getAttribute("data"); %>
-    <table border="1">
-        <tr>
-            <th>Num</th>
-            <th>Id</th>
-            <th>Pwd</th>
-            <th>Email</th>
-            <th>동작</th>
-        </tr>
-        <% for (int i = 0; i < list.size(); i++) {
-            Member member = list.get(i);
-        %>
-        <tr>
-            <td><%= member.getNum() %></td>
-            <td><%= member.getId() %></td>
-            <td><%= member.getPwd() %></td>
-            <td><%= member.getEmail() %></td>
-            <td>
-                <form action="<%=request.getContextPath()%>/control" method="post">
-        			<input type="hidden" name="type" value="delete">
-        			<input type="hidden" name="num"  value="<%= member.getNum() %>">
-        			<input type="submit" value="삭제">
-   		 		</form>
-   		 		<form action="<%=request.getContextPath()%>/control" method="post">
-        			<input type="hidden" name="type" value="update">
-        			<input type="hidden" name="num"  value="<%= member.getNum() %>">
-        			<input type="submit" value="수정">
-   		 		</form>
-            </td>
-        </tr>
-        <% } %>
-        
-    </table>
+<div class="container mt-4">
+	<div class="row">
+	<h3>회원 리스트</h3>
+    <%List<Member> list = (ArrayList<Member>) request.getAttribute("data"); %>
+	    <table border="1" class="table">
+	        <tr>
+	            <th>순번</th>
+	            <th>ID</th>
+	            <th>PWD</th>
+	            <th>Email</th>
+	            <th>동작</th>
+	        </tr>
+	        <% for (int i = 0; i < list.size(); i++) {
+	            Member member = list.get(i);
+	        %>
+	        <tr>
+	            <td><%= member.getNum() %></td>
+	            <td><%= member.getId() %></td>
+	            <td><%= member.getPwd() %></td>
+	            <td><%= member.getEmail() %></td>
+	            <td>
+	                <form action="<%=request.getContextPath()%>/control" method="post">
+	        			<input type="hidden" name="type" value="delete">
+	        			<input type="hidden" name="num"  value="<%= member.getNum() %>">
+	        			<input type="submit" class="btn btn-danger" value="삭제">
+	   		 		</form>
+	   		 		<form action="<%=request.getContextPath()%>/control" method="post">
+	        			<input type="hidden" name="type" value="update">
+	        			<input type="hidden" name="num"  value="<%= member.getNum() %>">
+	        			<input type="submit" class="btn btn-success" value="수정">
+	   		 		</form>
+	           </td>
+	        </tr>
+	        <% } %>
+	        
+	    </table>
+    </div>
+</div>
 </body>
 </html>

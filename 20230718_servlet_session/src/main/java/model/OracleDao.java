@@ -13,7 +13,7 @@ public class OracleDao implements Dao {
 	public Connection conn = null;
 	public PreparedStatement pstmt = null;
 	public Statement stmt = null;
-	ResultSet rs = null;
+	public ResultSet rs = null;
 	
 	private static OracleDao instance = new OracleDao();
 
@@ -116,7 +116,7 @@ public class OracleDao implements Dao {
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, search_num);
-			ResultSet rs = pstmt.executeQuery();
+			
 			rs=pstmt.executeQuery();
 			
 			if (rs.next()) {
@@ -172,6 +172,36 @@ public class OracleDao implements Dao {
 		} finally {
 			discon();
 		}
+	}
+	
+	@Override
+	public Member signin(String search_id, String search__pwd) {
+		con();
+		Member m = null;
+		String sql="select * from event where id=? and pwd=?";
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, search_id);
+			pstmt.setString(2, search__pwd);
+	
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()){
+				int num = rs.getInt(1);
+				String id = rs.getString(2);
+				String email = rs.getString(3);
+				String pwd = rs.getString(4);
+				
+				m  = new Member(num, id, email, pwd);
+				
+			}
+		} catch(Exception e) {
+			
+		} finally {
+			discon();
+		}
+		
+		return m;
 	}
 
 }
