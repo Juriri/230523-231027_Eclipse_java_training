@@ -45,9 +45,8 @@ public class EventService implements Service  {
 	}
 
 	@Override
-	public Member win() {
+	public Member getMemberbySignin(String search_id, String search_pwd) {
 		// TODO Auto-generated method stub
-		return null;
+		return dao.signin(search_id, search_pwd);
 	}
-
 }
