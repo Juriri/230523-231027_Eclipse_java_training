@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import model.Member;
 import service.EventService;
@@ -68,16 +69,36 @@ public class control extends HttpServlet {
 		
 		if(type.equals("delete")) {
 			int num = Integer.parseInt(request.getParameter("num"));
-			service.delete(num);
-			resultView="event/form.jsp";
+			
+			HttpSession session = request.getSession(true); // 새로운 세션 가져오거나 기존 세션 사용
+			String userId = (String) session.getAttribute("id");
+			
+			if(userId != null) {
+				service.delete(num);
+				resultView="event/form.jsp";
+			} else {
+				String alertScript = "<script>alert('" + "로그인 먼저 해주세요." + "');</script>";
+				request.setAttribute("alertScript", alertScript);
+				resultView="user/signin.jsp";
+			}
+
 		}
 		
 		
 		if(type.equals("update")) {
 			int num = Integer.parseInt(request.getParameter("num"));			
 			request.setAttribute("data", service.getMember(num));
+			HttpSession session = request.getSession(true); // 새로운 세션 가져오거나 기존 세션 사용
+			String userId = (String) session.getAttribute("id");
 			
-			resultView="event/edit.jsp";
+			if(userId != null) {
+				resultView="event/edit.jsp";
+			} else {
+				String alertScript = "<script>alert('" + "로그인 먼저 해주세요." + "');</script>";
+				request.setAttribute("alertScript", alertScript);
+				resultView="user/signin.jsp";
+			}
+			
 			
 		}
 		

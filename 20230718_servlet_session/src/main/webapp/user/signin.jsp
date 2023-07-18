@@ -23,6 +23,7 @@
 		</div>
 		<input type="submit" class="btn btn-danger" value="·Î±×ÀÎ">
 		</form>
+		${alertScript}
 	</div>
 </div>
 
