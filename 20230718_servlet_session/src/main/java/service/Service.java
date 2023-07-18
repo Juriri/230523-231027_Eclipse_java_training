@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 package service;
 
 import java.util.ArrayList;
@@ -12,3 +13,19 @@ public interface Service {
 	Member getMember(int num);
 	Member getMemberbySignin(String search_id, String search_pwd);
 }
+=======
+package service;
+
+import java.util.ArrayList;
+
+import model.Member;
+
+public interface Service {
+	void insert(Member m);
+	void edit(Member m);
+	ArrayList<Member> list();
+	void delete(int num);
+	Member getMember(int num);
+	Member getMemberbySignin(String search_id, String search_pwd);
+}
+>>>>>>> refs/remotes/origin/main
