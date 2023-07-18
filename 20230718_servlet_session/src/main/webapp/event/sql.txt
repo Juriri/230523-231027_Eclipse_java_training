@@ -1,0 +1,13 @@
+create table event(
+num number primary key,
+id varchar2(20) not null,
+email varchar2(40),
+pwd varchar2(20) not null
+);
+
+create sequence event_seq
+increment by 1
+start with 1
+maxvalue 9999
+nocache
+nocycle;

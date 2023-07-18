@@ -12,6 +12,10 @@
 <form action="<%=request.getContextPath()%>/control?type=update.do&num=${member.getNum()}" method="post" name="productForm">
 <table>
 <tr>
+	<td>순번 : ${member.getNum()}</td>
+</tr>
+
+<tr>
 	<td>이름 : ${member.getName()}</td>
 </tr>
 
