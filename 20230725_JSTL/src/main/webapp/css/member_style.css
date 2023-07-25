@@ -1,0 +1,82 @@
+@charset "EUC-KR";
+	body {
+            font-family: Arial, sans-serif;
+            
+            margin: 0; /* body의 기본 margin을 제거합니다 */
+    		padding: 0; /* body의 기본 padding을 제거합니다 */
+        }
+        h3 {
+            border-bottom: 1px solid #ccc;
+            padding-bottom: 10px;
+        }
+        form {
+            margin-top: 20px;
+            width: 300px;
+        }
+        label {
+            display: block;
+            margin-bottom: 8px;
+        }
+        input[type="text"] {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 12px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        input[type="password"] {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 12px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        input[type="submit"] {
+            background-color: #007BFF;
+            color: #fff;
+            padding: 8px 16px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+          input[type="reset"] {
+            background-color: #007BFF;
+            color: #fff;
+            padding: 8px 16px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        input[type="reset"]:hover {
+            background-color: #0056b3;
+        }
+        
+        
+a {
+    text-decoration: none;
+    color: #007BFF;
+    font-size: 18px; /* 링크 크기를 크게 설정합니다 */
+    display: block;
+    margin-bottom: 12px; /* 링크 사이의 간격을 조정합니다 */
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+.container {
+    display: flex; /* flexbox를 사용하여 컨테이너를 가득 채우도록 설정합니다 */
+    justify-content: center; /* 컨테이너를 수평 가운데로 정렬합니다 */
+    align-items: center; /* 컨테이너를 수직 가운데로 정렬합니다 */
+    height: 100vh; /* 화면 높이의 100%를 사용하여 전체 화면을 가득 채웁니다 */
+}
+
+.menu-container {
+    width: 300px;
+    padding: 20px;
+    border: 2px solid #ccc;
+    border-radius: 8px;
+}
