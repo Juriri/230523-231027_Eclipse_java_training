@@ -39,6 +39,9 @@
 	
 	<c:if test = "${empty board}">
 		조회 결과가 없습니다.
-	</c:if>	
+	</c:if>
+	<c:if test = "${sessionScope.member.getId() != board.getWriter()}">
+		작성자가 아니므로 해당 권한이 없습니다.
+	</c:if>		
 </body>
 </html>

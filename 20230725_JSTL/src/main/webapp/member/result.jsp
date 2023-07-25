@@ -28,5 +28,20 @@
 		</c:if>
 	</div>
 </div>
+<script>
+  // Function to show different alerts based on the flag value
+  function showAlert(flag) {
+    if (flag !== null) {
+      if (flag === 'true') {
+        alert('Board deleted successfully.');
+      } else {
+        alert('You are not authorized to delete this board.');
+      }
+    }
+  }
+
+  // Assuming the flag value is set in the request attribute "flag"
+  showAlert('${flag}');
+</script>
 </body>
 </html>

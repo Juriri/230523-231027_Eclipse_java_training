@@ -8,10 +8,12 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import board.service.Service;
 import board.service.ServiceImpl;
 import model.Board;
+import model.Member;
 
 /**
  * Servlet implementation class DelBoardController
@@ -63,13 +65,26 @@ public class DelBoardController extends HttpServlet {
 			if(dispatcher!=null) {
 				dispatcher.forward(request, response);
 			}
-		}
-		if(type.equals("delete")) {
-			dispatcher = request.getRequestDispatcher("/member/result.jsp");
-			service.delBoard(num);
+		} else if(type.equals("delete")) {
+			
+			HttpSession session = request.getSession(false);
+			Member member = (Member)session.getAttribute("member");
+			boolean flag = false;
+			if(board.getWriter().equals(member.getId())) {
+				service.delBoard(num);
+				flag = true;
+				dispatcher = request.getRequestDispatcher("/member/result.jsp");
+			
+			} else {
+				flag = false;
+				dispatcher = request.getRequestDispatcher("/member/result.jsp");
+			}
+			
+			request.setAttribute("flag", flag);
 			if(dispatcher!=null) {
 				dispatcher.forward(request, response);
 			}
+			
 		}
 		
 	}
