@@ -41,8 +41,9 @@ public class ProdDelController extends HttpServlet {
 		Product product = service.getProduct(num);
 		service.delProduct(num);
 		
-		String uploadPath="C:\\Users\\KOSTA\\Desktop\\workspace2\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\webapps\\shop_img";
+		String uploadPath="C:\\Users\\KOSTA\\Desktop\\workspace2\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\webapps\\shop_img\\";
 		String[] arr=product.getImg().split("/");
+		
 		String fname = arr[arr.length-1];
 		File f = new File(uploadPath+fname);
 		f.delete();

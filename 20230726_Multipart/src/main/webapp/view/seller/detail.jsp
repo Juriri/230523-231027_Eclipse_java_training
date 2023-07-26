@@ -68,5 +68,11 @@ function a() {
 		</tr>
 	</table>
 </form>
+<form name="commentForm" action="${pageContext.request.contextPath }/comment/insert" method="post">
+	<input type="hidden" name="parent_num" value="${product.num }">
+	작성자: ${user.name }
+	<textarea name="content" id="comment"></textarea>
+	<input type="submit" value="댓글 제출">
+</form>
 </body>
 </html>

@@ -56,6 +56,7 @@ public class AddController extends HttpServlet {
 			p.setNum(service.makeNum());
 			
 			//request, 파일저장경로, 용량, 인코딩타입, 중복 파일명에 대한 기본 정책
+			//new DefaultFileRenamePolicy() 중복되는 파일에서 이름 새로 생성 옵션
 			multi = new MultipartRequest(request, uploadPath, maxSize, "utf-8", new DefaultFileRenamePolicy());
 			p.setName(multi.getParameter("name"));
 			p.setQuantity(Integer.parseInt(multi.getParameter("quantity")));
@@ -69,8 +70,10 @@ public class AddController extends HttpServlet {
 				//form 태크에서 name="여기에 지정한 이름"을 가져온다.
 				String file1 = (String)files.nextElement();
 				//그에 해당하는 실제 파일 이름을 가져옴
-				img = multi.getOriginalFileName(file1);
-				
+				//옵션1:: 파일 본래의 이름이 DB에 저장되며, 이미지만 새로운 네임으로 저장된다. 
+				/* img = multi.getOriginalFileName(file1); */
+				//옵션2:: 중복 파일 시 새로운 이름이 DB에 저장되며, 이미지도 새로운 네임으로 저장된다.
+				img = multi.getFilesystemName(file1);
 				//파일 업로드
 				File file = multi.getFile(file1);
 				
