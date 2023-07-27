@@ -34,9 +34,9 @@ public class EditController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		request.setCharacterEncoding("euc-kr");
-		response.setContentType("text/html; charset=euc-kr");
-		request.setCharacterEncoding("euc-kr");;
+		request.setCharacterEncoding("utf-8");
+		response.setContentType("text/html; charset=utf-8");
+		request.setCharacterEncoding("utf-8");
 		
 		Service service = new ServiceImpl();
 		String id = request.getParameter("id");

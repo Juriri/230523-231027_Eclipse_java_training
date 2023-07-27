@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page import="model.Comment"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -15,7 +16,53 @@
             } else {
                 alert("취소 되었습니다. ");
             }
-        }		
+        }
+        
+        function addComment() {
+            var commentText = document.getElementsByName("commentText")[0].value;
+            var xhr = new XMLHttpRequest();
+            xhr.open("POST", "${pageContext.request.contextPath}/order/CommentController?action=add", true);
+            xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    var comments = JSON.parse(xhr.responseText);
+                    var commentContainer = document.getElementById("commentContainer");
+                    commentContainer.innerHTML = ''; // 기존 댓글 목록을 비우고 다시 표시
+                    comments.forEach(function (comment) {
+                        var p = document.createElement("p");
+                        p.textContent = comment.user_id + ": " + comment.user_comment;
+                        commentContainer.appendChild(p);
+                    });
+                }
+            };
+            xhr.send("productId=${product.num}&userId=${sessionScope.member.getId()}&commentText=" + encodeURIComponent(commentText));
+            // 댓글 추가 후 입력 필드 초기화
+            document.getElementsByName("commentText")[0].value = '';
+        }
+        
+        function getComments() {
+            var xhr = new XMLHttpRequest();
+            xhr.open("GET", "${pageContext.request.contextPath}/order/CommentController?action=getComments&productId=${product.num}", true);
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                	var comments = JSON.parse(xhr.responseText);
+                    // 댓글 목록을 동적으로 표시하는 로직을 구현합니다.
+                    // 이 예시에서는 comments 배열을 순회하며 댓글을 표시합니다.
+                    var commentContainer = document.getElementById("commentContainer");
+                    commentContainer.innerHTML = ''; // 기존 댓글 목록을 비우고 다시 표시
+                    comments.forEach(function (comment) {
+                        var p = document.createElement("p");
+                        p.textContent = comment.user_id + ": " + comment.user_comment;
+                        commentContainer.appendChild(p);
+                    });
+                }
+            };
+            xhr.send();
+        }
+        // 페이지 로드 시 댓글 목록을 받아오기 위해 호출합니다.
+        getComments();
+     	// 60초마다 댓글 목록을 갱신하기 위해 setInterval() 함수를 사용합니다.
+        setInterval(getComments, 60000); // 60초(60000ms) 마다 호출
     </script>
 </head>
 <body>
@@ -66,7 +113,8 @@
                                 <img src="https://t4.ftcdn.net/jpg/04/73/25/49/360_F_473254957_bxG9yf4ly7OBO5I0O5KABlN930GwaMQz.jpg" alt="No Image">
                             </c:when>
                             <c:otherwise>
-                                <img src="${product.img}" alt="Product Image">
+                                <%-- <img src="${product.img}" alt="Product Image"> --%>
+                                <img src="${pageContext.request.contextPath}${product.img}" width="300" height="300">
                             </c:otherwise>
                         </c:choose>
                     </td>
@@ -84,20 +132,16 @@
         </form>
         <div class="comment-form">
 	        <h4>댓글 작성</h4>
-	    	<form name="commentForm" action="${pageContext.request.contextPath}/order/CommentController?action=add" method="post">
+	    	<form name="commentForm">
 		        <input type="hidden" name="productId" value="${product.num}">
 		        <input type="hidden" name="userId" value="${sessionScope.member.getId() }">
 		        ${sessionScope.member.getId() }<br>
 		        <textarea name="commentText" rows="4" cols="50"></textarea><br>
-		        <input type="submit" value="댓글 작성">
-	   		 </form>
+		        <input type="button" value="댓글 작성" onclick="addComment()">
+	   		</form>
 		</div>
-    	
-    	<h4>댓글 목록</h4>
-    	<c:forEach items="${comments}" var="comment">
-        	<p>${comment.user}: ${comment.text}</p>
-    	</c:forEach>
-    	
+    	<div id="commentContainer">
+   		</div>
     </c:otherwise>
 </c:choose>
 </body>

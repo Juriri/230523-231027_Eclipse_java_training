@@ -35,6 +35,10 @@ public class SearchController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		request.setCharacterEncoding("euc-kr");
+		response.setContentType("text/html; charset=euc-kr");
+		request.setCharacterEncoding("euc-kr");
+		
 		HttpSession session  =  request.getSession();
 		Service service = new ServiceImpl();
 		RequestDispatcher dispatcher = null;

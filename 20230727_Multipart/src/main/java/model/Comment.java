@@ -1,10 +1,10 @@
 package model;
 
 public class Comment {
-	int comment_num;
-	int product_num;
-	String user_id;
-	String user_comment;
+	private int comment_num;
+	private int product_num;
+	private String user_id;
+	private String user_comment;
 	
 	
 	public Comment() {

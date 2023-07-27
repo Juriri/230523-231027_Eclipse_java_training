@@ -133,7 +133,7 @@ public class DaoImpl implements Dao {
 		// TODO Auto-generated method stub
 		Connection conn = db.getConnection();
 		
-		String sql = "delete shop_comment where num=?";
+		String sql = "delete shop_comment where comment_num=?";
 		PreparedStatement pstmt = null;
 
 		try {

@@ -55,8 +55,8 @@ public class AddController extends HttpServlet {
 		int maxSize = 1024 * 1024 * 10;
 		MultipartRequest multi = null;
 	
-		String uploadPath="C:\\Users\\KOSTA\\Desktop\\workspace\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\webapps\\shop_img";
-		
+		//String uploadPath="C:\\Users\\KOSTA\\Desktop\\workspace\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\webapps\\shop_img";
+		String uploadPath = "/Users/hyunjulee/Desktop/eclipse_workspace/230523-231027_Eclipse_java_training/20230727_Multipart/src/main/webapp/shop_img";
 		try {
 			p.setNum(service.makeNum());
 			p.setS_id(member.getId());

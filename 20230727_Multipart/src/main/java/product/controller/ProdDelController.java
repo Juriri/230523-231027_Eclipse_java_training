@@ -44,7 +44,8 @@ public class ProdDelController extends HttpServlet {
 		int num = Integer.parseInt(request.getParameter("num"));
 		Product product = service.getProduct(num);
 		
-		String uploadPath = "C:\\Users\\KOSTA\\Desktop\\workspace\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\webapps\\shop_img\\";
+		//String uploadPath = "C:\\Users\\KOSTA\\Desktop\\workspace\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\webapps\\shop_img\\";
+		String uploadPath = "/Users/hyunjulee/Desktop/eclipse_workspace/230523-231027_Eclipse_java_training/20230727_Multipart/src/main/webapp/shop_img/";
 		String[] arr=product.getImg().split("/");
 		String fname = arr[arr.length-1];
 		
